@@ -95,4 +95,17 @@ app.post("/login", async (req: any, res: any) => {
   }
 });
 
+app.get("/users", async (req: any, res: any) => {
+  try {
+    const users = await User.find();
+    return res.status(200).json({
+      users,
+      message: "Users retrieved successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 export default app;
